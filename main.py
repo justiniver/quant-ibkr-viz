@@ -12,8 +12,8 @@ contract = Stock('AAPL', 'SMART', 'USD')
 bars = ib.reqHistoricalData(
     contract,
     endDateTime='',
-    durationStr='1 M',
-    barSizeSetting='1 day',
+    durationStr='1 D',
+    barSizeSetting='5 secs',
     whatToShow='TRADES',
     useRTH=True,
     formatDate=1
@@ -25,7 +25,7 @@ df = util.df(bars)
 # plot the closing prices
 plt.figure(figsize=(10, 5))
 plt.plot(df['date'], df['close'], label='AAPL Closing Price')
-plt.title('AAPL - Last Month')
+plt.title('AAPL')
 plt.xlabel('Date')
 plt.ylabel('Price ($)')
 plt.grid(True)
