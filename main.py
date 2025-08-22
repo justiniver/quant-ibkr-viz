@@ -6,8 +6,8 @@ from ib_insync import *
 ib = IB()
 ib.connect('127.0.0.1', 7497, clientId=1)
 
-# create contract for AAPL stock
-contract = Stock('AAPL', 'SMART', 'USD')
+# create contract for stock
+contract = Stock('PLTR', 'SMART', 'USD')
 
 bars = ib.reqHistoricalData(
     contract,
@@ -22,15 +22,18 @@ bars = ib.reqHistoricalData(
 # convert data to pandas DataFrame
 df = util.df(bars)
 
+print(df)
+
 # plot the closing prices
 plt.figure(figsize=(10, 5))
-plt.plot(df['date'], df['close'], label='AAPL Closing Price')
-plt.title('AAPL')
+plt.plot(df['date'], df['close'], label='PLTR Price')
+plt.title('PLTR')
 plt.xlabel('Date')
 plt.ylabel('Price ($)')
 plt.grid(True)
 plt.legend()
 plt.tight_layout()
-plt.show()
+
+# plt.show()
 
 ib.disconnect()
